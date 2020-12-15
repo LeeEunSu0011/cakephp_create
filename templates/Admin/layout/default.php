@@ -39,6 +39,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
         <div class="top-nav-links">
             <a href="/admin/users">ユーザー管理</a>
+            <a href="/admin/posts">掲示板管理</a>
             <a href="/admin/users/logout">ログアウト</a>
         </div>
     </nav>
