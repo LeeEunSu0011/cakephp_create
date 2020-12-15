@@ -21,8 +21,11 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
+use Cake\Routing\Route;
+use Cake\Routing\Router;
 
 /*
  * The default class to use for all routes
@@ -57,6 +60,9 @@ $routes->scope('/', function (RouteBuilder $builder) {
      */
     $builder->connect('/pages/*', 'Pages::display');
 
+    Router::prefix('admin',function($routes){
+        $routes->fallbacks('DashedRoute');
+    });
     /*
      * Connect catchall routes for all controllers.
      *
