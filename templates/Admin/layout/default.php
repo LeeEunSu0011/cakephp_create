@@ -38,8 +38,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href="/admin/users">コントロールパネル</a>
         </div>
         <div class="top-nav-links">
-            <a target="/admin/users">ユーザー管理</a>
-            <a target="/admin/users/logout">ログアウト</a>
+            <a href="/admin/users">ユーザー管理</a>
+            <a href="/admin/users/logout">ログアウト</a>
         </div>
     </nav>
     <main class="main">
