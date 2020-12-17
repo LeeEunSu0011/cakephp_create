@@ -12,6 +12,21 @@ use App\Controller\AppController;
  */
 class PostsController extends AppController
 {
+    public $paginate = [
+        'limit' => 30,
+        'order' => [
+            'created' => 'desc'
+        ],
+        'contain' => 'Users'
+    ];
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->loadModel('Users');
+        $this->loadModel('Tags');
+    }
+
     /**
      * Index method
      *
@@ -34,7 +49,7 @@ class PostsController extends AppController
     public function view($id = null)
     {
         $post = $this->Posts->get($id, [
-            'contain' => [],
+            'contain' => ['Users'],
         ]);
 
         $this->set(compact('post'));
@@ -57,7 +72,10 @@ class PostsController extends AppController
             }
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
         }
-        $this->set(compact('post'));
+
+        $users = $this->Users->find('list');
+        
+        $this->set(compact('post' ,'users'));
     }
 
     /**
@@ -81,7 +99,9 @@ class PostsController extends AppController
             }
             $this->Flash->error(__('The post could not be saved. Please, try again.'));
         }
-        $this->set(compact('post'));
+
+        $users = $this->Users->find('list');
+        $this->set(compact('post', 'users'));
     }
 
     /**

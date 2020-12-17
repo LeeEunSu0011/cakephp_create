@@ -3,6 +3,13 @@ namespace App\Controller;
 
 class PostsController extends AppController
 {
+    public $pagination = [
+        'limit' => 10,
+        'order' => [
+            'create' => 'desc'
+        ]
+    ];
+
     public function index()
     {
         $posts = $this->Posts->find('all');
@@ -12,6 +19,8 @@ class PostsController extends AppController
 
     public function view($id = null)
     {
-        $this->set(compact(['id']));
+        $post = $this->Posts->get($id, ['contain' => 'Users']);
+
+        $this->set(compact('post'));
     }
 }
